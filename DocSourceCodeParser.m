@@ -35,7 +35,7 @@
 
 - (void) parseAndWeave
 {
-	for (SCKClass *class in [[sourceFile classes] allValues])
+	for (SCKClass *class in [[sourceCollection classes] allValues])
 	{
 		DocHeader *header = [DocHeader new];
 

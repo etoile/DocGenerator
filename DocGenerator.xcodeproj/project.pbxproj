@@ -232,7 +232,6 @@
 		A53FDE37175E3350005A6967 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A53FE02A175E43A6005A6967 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
 		A53FE02B175E43A6005A6967 /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
-		A599B11717C628EB0072D02F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A599E87417EDEE11008DDA5F /* DocProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocProperty.h; sourceTree = "<group>"; };
 		A599E87517EDEE11008DDA5F /* DocProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocProperty.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -389,7 +388,6 @@
 			children = (
 				A53FDE35175E3350005A6967 /* AppKit.framework */,
 				A53FDE37175E3350005A6967 /* Foundation.framework */,
-				A599B11717C628EB0072D02F /* CoreData.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -414,7 +412,6 @@
 				609DE8CB1762266200F486FD /* Sources */,
 				609DE8CC1762266200F486FD /* Frameworks */,
 				609DE8CD1762266200F486FD /* Resources */,
-				A55D959B17F0CDF40025D35D /* CopyFiles */,
 			);
 			buildRules = (
 			);

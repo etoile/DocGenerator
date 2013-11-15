@@ -188,4 +188,18 @@ static NSString *root = @"root";
 	return [weaver currentHeader];
 }
 
+- (void) weaveIVar:(DocIVar *)anIVar
+{
+	[self flushAccumulatedDocElementsForConstructNamed: currentConstructName];
+	currentConstructName = root;
+	[weaver weaveIVar: anIVar];
+}
+
+- (void) weaveProperty:(DocProperty *)aProperty
+{
+	[self flushAccumulatedDocElementsForConstructNamed: currentConstructName];
+	currentConstructName = root;
+	[weaver weaveProperty: aProperty];
+}
+
 @end

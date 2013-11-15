@@ -592,4 +592,14 @@ presently. */
 	return currentHeader;
 }
 
+- (void)weaveIVar: (DocIVar *)anIVar
+{
+	[[self currentPage] addIVar: anIVar];
+}
+
+- (void)weaveProperty:(DocProperty *)aProperty
+{
+	[[self currentPage] addProperty: aProperty];
+}
+
 @end

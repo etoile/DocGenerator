@@ -51,6 +51,10 @@
 		60F7F14412AF91970031E9F1 /* DocCDataType.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F7F14312AF91970031E9F1 /* DocCDataType.m */; };
 		8DD76F9A0486AA7600D96B5E /* etdocgen.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* etdocgen.m */; settings = {ATTRIBUTES = (); }; };
 		A50064261721640300759754 /* DocSourceCodeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A50064251721640300759754 /* DocSourceCodeParser.m */; };
+		A517ABE517EB171B0016E876 /* DocIVar.m in Sources */ = {isa = PBXBuildFile; fileRef = A517ABE417EB171B0016E876 /* DocIVar.m */; };
+		A52E82CE17F0BF2800A26E7B /* DocIVar.m in Sources */ = {isa = PBXBuildFile; fileRef = A517ABE417EB171B0016E876 /* DocIVar.m */; };
+		A52E82CF17F0BF2800A26E7B /* DocProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E87517EDEE11008DDA5F /* DocProperty.m */; };
+		A599E87617EDEE11008DDA5F /* DocProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E87517EDEE11008DDA5F /* DocProperty.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +223,8 @@
 		8DD76FA10486AA7600D96B5E /* etdocgen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = etdocgen; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50064241721640300759754 /* DocSourceCodeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocSourceCodeParser.h; sourceTree = "<group>"; };
 		A50064251721640300759754 /* DocSourceCodeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocSourceCodeParser.m; sourceTree = "<group>"; };
+		A517ABE317EB171B0016E876 /* DocIVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocIVar.h; sourceTree = "<group>"; };
+		A517ABE417EB171B0016E876 /* DocIVar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocIVar.m; sourceTree = "<group>"; };
 		A51E86B2175E496D0059E587 /* TestGeneratingDoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestGeneratingDoc.m; sourceTree = "<group>"; };
 		A53FDD54175E2ABA005A6967 /* UnitKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = UnitKit.xcodeproj; path = ../../../Frameworks/UnitKit/Source/UnitKit.xcodeproj; sourceTree = "<group>"; };
 		A53FDE32175E3350005A6967 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -226,6 +232,9 @@
 		A53FDE37175E3350005A6967 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A53FE02A175E43A6005A6967 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
 		A53FE02B175E43A6005A6967 /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
+		A599B11717C628EB0072D02F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A599E87417EDEE11008DDA5F /* DocProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocProperty.h; sourceTree = "<group>"; };
+		A599E87517EDEE11008DDA5F /* DocProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocProperty.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +316,10 @@
 				602EA7E1171407CC00D499A9 /* DocGraphWriter.m */,
 				A50064241721640300759754 /* DocSourceCodeParser.h */,
 				A50064251721640300759754 /* DocSourceCodeParser.m */,
+				A517ABE317EB171B0016E876 /* DocIVar.h */,
+				A517ABE417EB171B0016E876 /* DocIVar.m */,
+				A599E87417EDEE11008DDA5F /* DocProperty.h */,
+				A599E87517EDEE11008DDA5F /* DocProperty.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -376,6 +389,7 @@
 			children = (
 				A53FDE35175E3350005A6967 /* AppKit.framework */,
 				A53FDE37175E3350005A6967 /* Foundation.framework */,
+				A599B11717C628EB0072D02F /* CoreData.framework */,
 			);
 			name = "Other Frameworks";
 			sourceTree = "<group>";
@@ -400,6 +414,7 @@
 				609DE8CB1762266200F486FD /* Sources */,
 				609DE8CC1762266200F486FD /* Frameworks */,
 				609DE8CD1762266200F486FD /* Resources */,
+				A55D959B17F0CDF40025D35D /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -588,6 +603,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52E82CE17F0BF2800A26E7B /* DocIVar.m in Sources */,
+				A52E82CF17F0BF2800A26E7B /* DocProperty.m in Sources */,
 				609DE8DF1762270A00F486FD /* DocPageWeaver.m in Sources */,
 				609DE8E01762270A00F486FD /* DocDeclarationReorderer.m in Sources */,
 				609DE8E11762270A00F486FD /* DocPage.m in Sources */,
@@ -634,6 +651,8 @@
 				601A56A412E89AB100727DAA /* DocCategoryPage.m in Sources */,
 				602EA7E2171407CC00D499A9 /* DocGraphWriter.m in Sources */,
 				A50064261721640300759754 /* DocSourceCodeParser.m in Sources */,
+				A517ABE517EB171B0016E876 /* DocIVar.m in Sources */,
+				A599E87617EDEE11008DDA5F /* DocProperty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -107,6 +107,17 @@
 	}
 }
 
+- (void) parseProgramComponent: (SCKFunction *)aFunction
+{	
+	[self setName: [aFunction name]];
+	[self appendToRawDescription: [[aFunction documentation] string]];
+	
+	DocDescriptionParser *descriptionParser = [DocDescriptionParser new];
+	
+	[descriptionParser parse: [self rawDescription]];
+	[self addInformationFrom: descriptionParser];
+}
+
 #pragma clang diagnostic pop
 
 @end

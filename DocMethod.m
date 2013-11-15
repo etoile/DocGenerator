@@ -191,12 +191,33 @@
 
 - (void) parseProgramComponent: (SCKMethod *)programComponent
 {
-	// TODO: Finish to implement
-	//NSString *name = [programComponent name];
-	//SCKSourceLocation *declaration = [programComponent declaration];
-	//SCKSourceLocation *definition = [programComponent definition];
-	//NSString *typeEncoding = [programComponent typeEncoding];
+	[self setName: [programComponent name]];
+	[self appendToRawDescription: [[programComponent documentation] string]];
+	// Needs fixing when there is proper API in SCK
+#if 0
+	[self setReturnType: [programComponent returnType]];
+	for (NSString *selectorKeyword in [[programComponent arguments] allKeys])
+	{
+		NSString *argument = [[programComponent arguments] objectForKey: selectorKeyword];
+		[self addParameter: [self parameterFromSourceCodeArgument: argument]];
+		[self appendSelectorKeyword: selectorKeyword];
+	}
+#endif
+	
+	[self setIsClassMethod: [programComponent isClassMethod]];
+	
+	DocDescriptionParser *descriptionParser = [DocDescriptionParser new];
+	
+	[descriptionParser parse: [self rawDescription]];
+	[self addInformationFrom: descriptionParser];
+}
 
+- (DocParameter *)parameterFromSourceCodeArgument: (NSString *)anArg
+{
+	DocParameter *parameter = [DocParameter new];
+	[parameter setType: anArg];
+	
+	return parameter;
 }
 
 @end

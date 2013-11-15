@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import <EtoileFoundation/EtoileFoundation.h>
+#import <SourceCodeKit/SourceCodeKit.h>
 #import "GSDocParser.h"
 #import "DocElement.h"
 
@@ -36,5 +37,7 @@ Returns -weaveFunction:.
 
 See -[DocElement weaveSelector]. */
 - (SEL) weaveSelector;
+
+- (void) parseProgramComponent: (SCKFunction *)aFunction;
 
 @end

@@ -12,11 +12,11 @@
 #import <Foundation/Foundation.h>
 #import <EtoileFoundation/EtoileFoundation.h>
 
-@class DocHeader, DocMethod, DocFunction, DocMacro, DocConstant, DocCDataType, DocHTMLElement;
+@class DocHeader, DocMethod, DocFunction, DocMacro, DocConstant, DocCDataType, DocHTMLElement, DocIVar, DocProperty;
 
 /** @group Page Generation
 
-A documentation page that weaves various HTML, GSDoc, Markdown and plist 
+A documentation page that weaves various HTML, GSDoc, Markdown, plist, and ObjC
 files (usually provided on the command-line), into a new HTML representation  
 based on the template tags embedded in the HTML or Markdown content.
 
@@ -51,6 +51,8 @@ experimental and untested. */
 	NSMutableArray *constants;
 	NSMutableArray *macros;
 	NSMutableArray *otherDataTypes;
+	NSMutableArray *ivars;
+	NSMutableArray *properties;
 }
 
 /** @taskunit Initialization and Identity */
@@ -92,6 +94,10 @@ A subheader can be used to regroup related documentation tree elements. */
 - (void) addMacro: (DocMacro *)aMacro;
 /** Adds another data type documentation to the page. */
 - (void) addOtherDataType: (DocCDataType *)anotherDataType;
+/** Adds an ivar documentation to the page. */
+- (void) addIVar: (DocIVar *)anIVar;
+/** Adds a property documentation to the page. */
+- (void) addProperty: (DocProperty *)aProperty;
 
 /** @taskunit HTML Generation */
 

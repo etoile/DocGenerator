@@ -10,4 +10,14 @@
 
 @implementation TestCommon
 
+- (NSArray *)retrieveTestFiles
+{
+	NSBundle *bundle = [NSBundle bundleForClass: [self class]];
+	NSArray *testFiles = [bundle pathsForResourcesOfType: @"h"
+											 inDirectory: nil];
+	[testFiles arrayByAddingObjectsFromArray: [bundle pathsForResourcesOfType: @"m" inDirectory: nil]];
+	
+	return testFiles;
+}
+
 @end

@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import <EtoileFoundation/EtoileFoundation.h>
+#import <SourceCodeKit/SourceCodeKit.h>
 #import "DocElement.h"
 #import "GSDocParser.h"
 
@@ -72,6 +73,8 @@ Returns -weaveConstant:.
 See -[DocElement weaveSelector]. */
 - (SEL) weaveSelector;
 
+- (void) parseProgramComponent: (SCKGlobal *)aGlobal;
+
 @end
 
 
@@ -102,5 +105,10 @@ Returns -weaveConstant:.
 
 See -[DocElement weaveSelector]. */
 - (SEL) weaveSelector;
+
+/* Constant can be enum or union and each of them has different 
+ * class in SCK. So id should be used as parameter, not DocConstant.
+ */
+- (void)parseProgramComponent: (id)aConstant;
 
 @end

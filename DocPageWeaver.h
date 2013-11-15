@@ -12,7 +12,7 @@
 #import <Foundation/Foundation.h>
 #import <EtoileFoundation/EtoileFoundation.h>
 
-@class DocHeader, DocMethod, DocFunction, DocMacro, DocCDataType, DocConstant, DocPage, DocIndex, DocSourceCodeParser;
+@class DocHeader, DocMethod, DocFunction, DocMacro, DocCDataType, DocConstant, DocPage, DocIndex, DocSourceCodeParser, DocIVar, DocProperty, DocEnumeration;
 
 /** @group Weaving and Parsing
     @abstract A documentation source parser reports parsing result to a weaver through this protocol.
@@ -40,6 +40,8 @@ DocWeaving method called back by the parser.  */
 - (void) weaveFunction: (DocFunction *)aFunction;
 - (void) weaveMacro: (DocMacro *)aMacro;
 - (void) weaveConstant: (DocConstant *)aConstant;
+- (void) weaveIVar: (DocIVar *)anIVar;
+- (void) weaveProperty: (DocProperty *)aProperty;
 - (void) weaveOtherDataType: (DocCDataType *)aDataType;
 - (void) finishWeaving;
 - (DocHeader *) currentHeader;

@@ -141,6 +141,18 @@
 	return @selector(weaveConstant:);
 }
 
+- (void)parseProgramComponent: (SCKGlobal *)aVariable
+{
+	/*
+	[self setName: [aVariable name]];
+	[self setType: [aVariable typeEncoding]];
+	[self appendToRawDescription: [[aVariable documentation] string]];
+	
+	DocDescriptionParser *descriptionParser = [DocDescriptionParser new];
+	
+	[descriptionParser parse: [self rawDescription]];
+	[self addInformationFrom: descriptionParser];*/
+}
 
 @end
 
@@ -157,6 +169,25 @@
 	return @selector(weaveConstant:);
 }
 
+- (void)parseProgramComponent: (id)aConstant
+{
+	[self setName: [aConstant name]];
+	// FIXME: Needs fixing SCK to parse documentation.
+	// Just check the value now in order to prevent throwing an exception.
+	if (nil != [[aConstant documentation] string])
+	{
+		[self appendToRawDescription: [[aConstant documentation] string]];
+	}
+	else
+	{
+		[self appendToRawDescription: @""];
+	}
+	
+	DocDescriptionParser *descriptionParser = [DocDescriptionParser new];
+	
+	[descriptionParser parse: [self rawDescription]];
+	[self addInformationFrom: descriptionParser];
+}
 
 @end
 

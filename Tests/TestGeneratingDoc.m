@@ -7,6 +7,7 @@
  */
 
 #import "TestCommon.h"
+#import "DocSourceCodeParser.h"
 
 @interface TestGeneratingDoc : TestCommon
 
@@ -14,9 +15,15 @@
 
 @implementation TestGeneratingDoc
 
-- (void) testDummy
+- (id)init
 {
-	UKTrue(YES);
+	SUPERINIT;
+	
+	DocSourceCodeParser *sourceCodeParser = [[DocSourceCodeParser alloc] initWithSourceFile: [[self retrieveTestFiles] firstObject] additionalParserFiles: nil];
+	
+	[sourceCodeParser parseAndWeave];
+	
+	return self;
 }
 
 @end

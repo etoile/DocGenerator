@@ -16,6 +16,8 @@
 #import "DocMethod.h"
 #import "GSDocParser.h"
 #import "DocHTMLElement.h"
+#import "DocIVar.h"
+#import "DocProperty.h"
 
 
 @implementation DocPage
@@ -80,6 +82,8 @@
 	constants = [NSMutableArray new];
 	macros = [NSMutableArray new];
 	otherDataTypes = [NSMutableArray new];
+	ivars = [NSMutableArray new];
+	properties = [NSMutableArray new];
 
 	return self;
 }
@@ -333,6 +337,16 @@
 - (void) addOtherDataType: (DocCDataType *)anotherDataType
 {
 	[self addElement: anotherDataType toDictionaryNamed: @"otherDataTypes"];
+}
+
+- (void) addIVar: (DocIVar *)anIVar
+{
+	[self addElement: anIVar toDictionaryNamed: @"ivars"];
+}
+
+- (void) addProperty: (DocProperty *)aProperty
+{
+	[self addElement: aProperty toDictionaryNamed: @"properties"];
 }
 
 - (NSString *) HTMLString

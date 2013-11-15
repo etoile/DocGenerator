@@ -7,6 +7,7 @@
  */
 
 #import "DocMacro.h"
+#import "DocDescriptionParser.h"
 
 @implementation DocMacro
 
@@ -18,6 +19,17 @@
 - (SEL) weaveSelector
 {
 	return @selector(weaveMacro:);
+}
+
+- (void) parseProgramComponent: (SCKMacro *)aMacro
+{	
+	[self setName: [aMacro name]];
+	[self appendToRawDescription: [[aMacro documentation] string]];
+	
+	DocDescriptionParser *descriptionParser = [DocDescriptionParser new];
+	
+	[descriptionParser parse: [self rawDescription]];
+	[self addInformationFrom: descriptionParser];
 }
 
 @end

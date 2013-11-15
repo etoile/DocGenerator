@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import <EtoileFoundation/EtoileFoundation.h>
+#import <SourceCodeKit/SourceCodeKit.h>
 #import "GSDocParser.h"
 #import "DocFunction.h"
 
@@ -35,5 +36,7 @@ Returns -weaveMacro:.
 
 See -[DocElement weaveSelector]. */
 - (SEL) weaveSelector;
+
+- (void) parseProgramComponent: (SCKMacro *)aMacro;
 
 @end

@@ -14,8 +14,9 @@ Directory with(path) files foreach(sourceFile,
 
 	#"(/\\*\\*.+?\\*/\\n)?@property \\(.+?\\) (\\w+(?: \\*+)?)(\\w+);"
 	#"(/\\*\\*[^*/]+?\\*/\\n)?@property \\(.+?\\) (\\w+(?: \\*+)?)(\\w+);"
+	#"(/\\*\\*(?:[^*]|\\*[^/])+?\\*/\\n)?@property \\(.+?\\) (\\w+(?: \\*+)?)(\\w+);"
 
-	regex := Regex with("(/\\*\\*(?:[^*]|\\*[^/])+?\\*/\\n)?@property \\(.+?\\) (\\w+(?: \\*+)?)(\\w+);")
+	regex := Regex with("(/\\*\\*[^/]+?\\*/\\n)?@property \\(.+?\\) (\\w+(?: \\*+)?)(\\w+);")
 	matches := regex matchesIn(sourceFile contents)
 
 	# Print regex captures
@@ -50,9 +51,11 @@ Directory with(path) files foreach(sourceFile,
 			setter = " - (void)set" .. (arg asCapitalized) .. ": (" .. type .. ")" .. arg .. ";\n"
 		)
 		
+		if (doc == nil, doc = "")
+
 		output appendSeq(doc)
 		output appendSeq(getter)
-		ifNonNil(setter, 
+		setter ifNonNil(
 			output appendSeq(doc)
 			output appendSeq(setter)
 		)

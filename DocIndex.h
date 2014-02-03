@@ -31,6 +31,7 @@ symbol name in a HTML link. */
 	NSDictionary *externalRefs;
 	NSDictionary *projectRefs;
 	NSMutableDictionary *mergedRefs;
+	NSMutableDictionary *projectElements;
 }
 
 + (id) currentIndex;
@@ -85,6 +86,14 @@ You must call this method before generating the document output e.g. invoking
 
 - (NSString *) linkWithName: (NSString *)aName ref: (NSString *)aRef anchor: (NSString *)anAnchor;
 - (NSString *) refFileExtension;
+
+/** @taskunit Documentation Element Tree Table */
+
+- (id) elementForSymbolName: (NSString *)aSymbol
+                     ofKind: (NSString *)aKind;
+- (void) setElement: (DocElement *)anElement
+      forSymbolName: (NSString *)aSymbol
+             ofKind: (NSString *)aKind;
 
 @end
 

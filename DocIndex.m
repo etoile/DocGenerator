@@ -8,6 +8,7 @@
 
 #import "DocIndex.h"
 #import "DocElement.h"
+#import "DocHeader.h"
 
 @implementation DocIndex
 
@@ -45,6 +46,7 @@ static DocIndex *currentIndex = nil;
 	externalRefs = [self createRefDictionaryWithMutability: NO];
 	projectRefs = [self createRefDictionaryWithMutability: YES];
 	mergedRefs = [self createRefDictionaryWithMutability: YES];
+	projectElements = [self createRefDictionaryWithMutability: YES];
    	return self;
 }
 
@@ -180,6 +182,81 @@ withDictionaryName: (NSString *)mergedDictName
 	return nil;
 }
 
+- (id) elementForOwnerSymbolName: (NSString *)anOwnerSymbol
+{
+	DocElement *element = [self elementForSymbolName: anOwnerSymbol
+	                                          ofKind: @"classes"];
+
+	if (element != nil)
+		return element;
+
+	element = [self elementForSymbolName: anOwnerSymbol
+	                              ofKind: @"protocols"];
+
+	if (element != nil)
+		return element;
+
+	element = [self elementForSymbolName: anOwnerSymbol
+	                              ofKind: @"categories"];
+
+	return element;
+}
+
+- (NSString *) linkForLocalAdoptedProtocolMethodRef: (NSString *)aRef
+                                      inMethodOwner: (DocHeader *)methodOwner
+{
+	NSParameterAssert([methodOwner isKindOfClass: [DocHeader class]]);
+
+	for (NSString *protocolName in [methodOwner adoptedProtocolNames])
+	{
+		DocHeader *protocol = [self elementForSymbolName: protocolName
+		                                          ofKind: @"protocols"];
+
+		NSString *symbol = [NSString stringWithFormat: @"%@[%@ %@]",
+			[aRef substringToIndex: 1], [protocol ownerSymbolName], [aRef substringFromIndex: 1]];
+		NSString *link = [self linkWithName: aRef
+		                      forSymbolName: symbol
+		                             ofKind: @"methods"];
+
+		if ([link isEqualToString: aRef] == NO)
+			return link;
+	}
+
+	return aRef;
+}
+
+/** For a DocHeader representing a protocol as methodOwner, returns immediately. */
+- (NSString *) linkForLocalSuperclassMethodRef: (NSString *)aRef
+                                 inMethodOwner: (DocHeader *)methodOwner
+{
+	NSParameterAssert([methodOwner isKindOfClass: [DocHeader class]]);
+	BOOL isClass = ([methodOwner className] == nil);
+
+	if (isClass == NO)
+		return aRef;
+
+	NSString *superclassName = [methodOwner superclassName];
+
+	while (superclassName != nil)
+	{
+		DocHeader *class = [self elementForSymbolName: superclassName
+		                                       ofKind: @"classes"];
+
+		NSString *symbol = [NSString stringWithFormat: @"%@[%@ %@]",
+			[aRef substringToIndex: 1], [class ownerSymbolName], [aRef substringFromIndex: 1]];
+		NSString *link = [self linkWithName: aRef
+		                      forSymbolName: symbol
+		                             ofKind: @"methods"];
+
+		if ([link isEqualToString: aRef] == NO)
+			return link;
+			
+		superclassName = [class superclassName];
+	}
+
+	return aRef;
+}
+
 // NOTE: Could be better to pass -ownerSymbolName result to relativeTo:, but 
 // we would lost the context to report a warning.
 - (NSString *) linkForLocalMethodRef: (NSString *)aRef relativeTo: (DocElement *)anElement
@@ -190,10 +267,28 @@ withDictionaryName: (NSString *)mergedDictName
 		return aRef;
 	}
 
+	/* For a protocol, ownerSymbolName == '(ProtocolName)'. 
+	   For a category, ownerSymbolName == 'ClassName(CategoryName)'. */
 	NSString *symbol = [NSString stringWithFormat: @"%@[%@ %@]", 
 		[aRef substringToIndex: 1], [anElement ownerSymbolName], [aRef substringFromIndex: 1]];
+	NSString *link = [self linkWithName: aRef
+	                      forSymbolName: symbol
+	                             ofKind: @"methods"];
 
-	return [self linkWithName: aRef forSymbolName: symbol ofKind: @"methods"];
+	if ([link isEqualToString: aRef] == NO)
+		return link;
+
+	DocHeader *methodOwner =
+		[self elementForOwnerSymbolName: [anElement ownerSymbolName]];
+
+	link = [self linkForLocalAdoptedProtocolMethodRef: aRef
+	                                    inMethodOwner: methodOwner];
+	
+	if ([link isEqualToString: aRef] == NO)
+		return link;
+		
+	return [self linkForLocalSuperclassMethodRef: aRef
+	                               inMethodOwner: methodOwner];
 }
 
 - (NSString *) linkWithName: (NSString *)aName ref: (NSString *)aRef anchor: (NSString *)anAnchor
@@ -205,6 +300,19 @@ withDictionaryName: (NSString *)mergedDictName
 - (NSString *) refFileExtension
 {
 	return nil;
+}
+
+- (id) elementForSymbolName: (NSString *)aSymbol
+                     ofKind: (NSString *)aKind
+{
+	return [[projectElements objectForKey: aKind] objectForKey: aSymbol];
+}
+
+- (void) setElement: (DocElement *)anElement
+      forSymbolName: (NSString *)aSymbol
+             ofKind: (NSString *)aKind
+{
+	[[projectElements objectForKey: aKind] setObject: anElement forKey: aSymbol];
 }
 
 @end

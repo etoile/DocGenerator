@@ -422,6 +422,9 @@ presently. */
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: aClassName 
 	                 ofKind: @"classes"];
+	[docIndex setElement: [self currentHeader]
+	       forSymbolName: aClassName 
+	              ofKind: @"classes"];
 }
 
 - (void) weaveProtocolNamed: (NSString *)aProtocolName 
@@ -441,6 +444,9 @@ presently. */
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: aProtocolName 
 	                 ofKind: @"protocols"];
+	[docIndex setElement: [self currentHeader]
+	       forSymbolName: aProtocolName
+	              ofKind: @"protocols"];
 }
 
 - (void) weaveCategoryNamed: (NSString *)aCategoryName
@@ -477,6 +483,9 @@ presently. */
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: categorySymbol
 	                 ofKind: kind];
+	[docIndex setElement: [self currentHeader]
+	       forSymbolName: categorySymbol
+	              ofKind: kind];
 }
 
 - (void) weaveMethod: (DocMethod *)aMethod
@@ -509,15 +518,21 @@ presently. */
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: refMarkup
 	                 ofKind: @"methods"];
+	[docIndex setElement: aMethod
+	       forSymbolName: refMarkup
+	              ofKind: @"methods"];
 }
 
 - (void) weaveFunction: (DocFunction *)aFunction
 {
 	[functionPage addFunction: aFunction];
     
-    [docIndex setProjectRef: [functionPage name]
+	[docIndex setProjectRef: [functionPage name]
 	          forSymbolName: [aFunction name] 
 	                 ofKind: @"functions"];
+	[docIndex setElement: aFunction
+	       forSymbolName: [aFunction name]
+	              ofKind: @"functions"];
 }
 
 - (void) weaveMacro: (DocMacro *)aMacro
@@ -527,14 +542,20 @@ presently. */
 	[docIndex setProjectRef: [macroPage name]
 	          forSymbolName: [aMacro name] 
 	                 ofKind: @"macros"];
+	[docIndex setElement: aMacro
+	       forSymbolName: [aMacro name]
+	              ofKind: @"macros"];
 }
 - (void) weaveConstant: (DocConstant *)aConstant
 {
 	[constantPage addConstant: aConstant];
 	
-    [docIndex setProjectRef: [constantPage name]
+	[docIndex setProjectRef: [constantPage name]
 	          forSymbolName: [aConstant name] 
 	                 ofKind: @"constants"];
+	[docIndex setElement: aConstant
+	       forSymbolName: [aConstant name]
+	              ofKind: @"constants"];
 }
 
 - (void) weaveOtherDataType: (DocCDataType *)aDataType
@@ -543,7 +564,10 @@ presently. */
 	// TODO: Would be nice to put these in the doc index too
 	/*[docIndex setProjectRef: [otherDataTypePage name] 
 	          forSymbolName: [aDataType name] 
-	                 ofKind: @"constants"];*/
+	                 ofKind: @"constants"];
+	[docIndex setElement: aDataType
+	       forSymbolName: [aDataType name]
+	              ofKind: @"constants"];*/
 }
 
 - (void) finishWeaving

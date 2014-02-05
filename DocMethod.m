@@ -96,12 +96,10 @@
 	DocHTMLIndex *docIndex = [DocIndex currentIndex];
 
 	H hReturn = [[self returnParameter] HTMLRepresentationWithParentheses: YES];
-	H hReturnType = [SPAN class: @"returnType" 
-	                       with: [SPAN class: @"type" with: hReturn]];
 	H hSignature = [SPAN class: @"methodSignature" 
 	                      with: [SPAN class: @"methodScope" 
 	                                   with: (isClassMethod ? @"+ " : @"- ")]	
-	                       and: hReturnType];
+	                       and: hReturn];
 
 	NSArray *params = [self parameters];
 	BOOL isUnaryMessage = [params isEmpty];

@@ -20,9 +20,8 @@
 - (DocHTMLElement *) HTMLRepresentation
 {
 	H hReturn = [[self returnParameter] HTMLRepresentationWithParentheses: NO];
-	H hReturnType = [SPAN class: @"returnType" with: [SPAN class: @"type" with: hReturn]];
 	H hSignature = [SPAN class: @"methodSignature" 
-	                      with: hReturnType
+	                      with: hReturn
 	                       and: [SPAN class: @"selector" with: @" " and: [self name]]
 	                       and: @"("];
 

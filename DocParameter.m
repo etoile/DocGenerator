@@ -198,8 +198,8 @@ camel case). */
 - (DocHTMLElement *) HTMLRepresentationWithParentheses: (BOOL)usesParentheses
 {
 	DocIndex *docIndex = [DocIndex currentIndex];
-	// NOTE: Should we use a span of class 'type inside the 'parameter' span...
-	H hParam = [SPAN class: @"parameter"];
+	BOOL isReturnParameter = ([self name] == nil);
+	H hParam = (isReturnParameter ? [SPAN class: @"returnType"] : [SPAN class: @"type"]);
 	BOOL hasContent = NO;
 
 	if (usesParentheses)
@@ -253,9 +253,12 @@ camel case). */
 	{
 		[hParam with: @" "];
 	}
-	[hParam with: [SPAN class: @"arg" with: [self name]]];
 
-	return hParam;
+	if (isReturnParameter)
+		return hParam;
+
+	return [SPAN class: @"parameter" with: hParam
+	               and: [SPAN class: @"arg" with: [self name]]];
 }
 
 @end

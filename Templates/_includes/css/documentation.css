@@ -66,9 +66,43 @@ url("../../images/global/small_bullet.png"); */
 We wrap <div id="documentation"> inside <div id="main"> in the HTML 
 template to achieve that. */
 
+#documentation h3
+{
+  /*color:#ff8b00;*/
+  /*text-transform: uppercase;*/
+  font-weight: bold;
+  font:normal 135% Helvetica; 
+}
+
+#documentation h4
+{
+  /*background:#7dadce;*/
+  height: 25px;
+  color:#ff8b00;
+  font-weight:bold;
+  text-transform: uppercase;
+}
+
 #documentation a
 {
   color: #444;
+}
+
+/*#documentation a {
+     border-bottom: 1px dotted #444;
+}
+#documentation a:hover {
+     text-decoration: none;
+     border-bottom: 1px solid #444;
+}*/
+
+#documentation .methodDescription a, #documentation .header a
+{
+  /*color: #5286aa;*/
+  /*color: #375dc7;*/
+  /*color: #26418b;*/
+  color: #2C4A9F; 
+  /*color: #52866a;*/
 }
 
 #documentation dl
@@ -281,12 +315,13 @@ template to achieve that. */
 
 #documentation .parameter
 {
-
+  
 }
 
-#documentation .returnType
+#documentation .returnType, #documentation .returnType a
 {
-
+  color: #006666;
+  /*color: #640032;*/
 }
 
 #documentation .selector
@@ -294,7 +329,8 @@ template to achieve that. */
 	font-weight: bold;
 }
 
-#documentation .type
+#documentation .type, #documentation .type a
 {
-	
+  color: #720039;
+  /*color: #8f0047;*/
 }

@@ -66,6 +66,11 @@ presently. */
 	return files;
 }
 
+- (NSArray *) additionalSourceFileTypes
+{
+	return A(@"html", @"text", @"md");
+}
+
 - (id) initWithParserSourceDirectory: (NSString *)aParserDirPath
                            fileTypes: (NSArray *)fileExtensions
                 rawSourceDirectories: (NSArray *)otherDirPaths
@@ -98,7 +103,8 @@ presently. */
 		}
 	
 		[otherFiles addObjectsFromArray: 
-			[[dirPath stringsByAppendingPaths: otherFileNames] pathsMatchingExtensions: A(@"html", @"text")]];
+			[[dirPath stringsByAppendingPaths: otherFileNames]
+				pathsMatchingExtensions: [self additionalSourceFileTypes]]];
 		[otherFiles addObjectsFromArray: [self commonRawSourceFilesInDirectory: dirPath]];
 	}
 
@@ -114,9 +120,12 @@ presently. */
 	NSMutableArray *commonFiles = [NSMutableArray arrayWithArray: sourceFiles];
 	
 	[[commonFiles filter] hasSuffix: [A(@"README", @"INSTALL", @"NEWS") each]];
-	
+
+	NSArray *validSourceFileTypes =
+		[[self additionalSourceFileTypes] arrayByAddingObject: @"gsdoc"];
+
 	return [commonFiles arrayByAddingObjectsFromArray: 
-		[sourceFiles pathsMatchingExtensions: A(@"gsdoc", @"html", @"text")]];
+		[sourceFiles pathsMatchingExtensions: validSourceFileTypes]];
 }
 
 - (id) initWithSourceFiles: (NSArray *)paths

@@ -54,7 +54,7 @@ void printHelp ()
   "\t      If indicated, will add links to the mentioned types in the class methods.\n"
   "\t -o : the ouput directory where the generated HTML files are saved.\n"
   "\t      If not indicated, etdocgen uses the current directory.\n"
-  "\t  - : the source file paths (.h, .c, .m, .gsdoc, .text and .html). If \n"
+  "\t  - : the source file paths (.h, .c, .m, .gsdoc, .text, .md, and .html). If \n"
   "\t      indicated, will cause both -c and -r to be ignored.\n"
   "\n"
   "Template tags\n"

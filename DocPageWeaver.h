@@ -141,6 +141,12 @@ existing page generation strategy or implement a new one. */
 
 For <em>gsdoc</em>, returns GSDocParser. */
 + (Class) parserClassForFileType: (NSString *)aFileExtension;
+/** Returns all the supported Markdown file extensions (.md and .text). */
++ (NSArray *) markdownFileTypes;
+/** Returns all the supported file extensions for additional documentation files. 
+
+This includes +markdownFileTypes plus .html. */
++ (NSArray *) additionalSourceFileTypes;
 
 /** @taskunit Initialization */
 

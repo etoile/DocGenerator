@@ -166,7 +166,9 @@
 	ETAssert(documentType != nil);
 
 	NSString *htmlContent = documentContent;
-	BOOL isMarkdown = ([documentType isEqual: @"text"] || [documentType isEqual: @""]);
+	// NOTE: For README, INSTALL and NEWS, we check the case without an extension
+	BOOL isMarkdown = ([documentType isEqual: @""]
+		|| [[DocPageWeaver markdownFileTypes] containsObject: documentType]);
 
 	//ETLog(@"Type %@ of %@", documentType, documentPath);
 

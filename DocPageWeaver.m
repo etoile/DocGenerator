@@ -36,6 +36,16 @@
 	return Nil;
 }
 
++ (NSArray *) markdownFileTypes
+{
+	return A(@"text", @"md");
+}
+
++ (NSArray *) additionalSourceFileTypes
+{
+	return [[self markdownFileTypes] arrayByAddingObject: @"html"];
+}
+
 - (void) presentError: (NSError *)anError
 {
 	NSLog(@"%@", anError);
@@ -64,11 +74,6 @@ presently. */
 	}
 
 	return files;
-}
-
-- (NSArray *) additionalSourceFileTypes
-{
-	return A(@"html", @"text", @"md");
 }
 
 - (id) initWithParserSourceDirectory: (NSString *)aParserDirPath
@@ -104,7 +109,7 @@ presently. */
 	
 		[otherFiles addObjectsFromArray: 
 			[[dirPath stringsByAppendingPaths: otherFileNames]
-				pathsMatchingExtensions: [self additionalSourceFileTypes]]];
+				pathsMatchingExtensions: [[self class] additionalSourceFileTypes]]];
 		[otherFiles addObjectsFromArray: [self commonRawSourceFilesInDirectory: dirPath]];
 	}
 
@@ -122,7 +127,7 @@ presently. */
 	[[commonFiles filter] hasSuffix: [A(@"README", @"INSTALL", @"NEWS") each]];
 
 	NSArray *validSourceFileTypes =
-		[[self additionalSourceFileTypes] arrayByAddingObject: @"gsdoc"];
+		[[[self class] additionalSourceFileTypes] arrayByAddingObject: @"gsdoc"];
 
 	return [commonFiles arrayByAddingObjectsFromArray: 
 		[sourceFiles pathsMatchingExtensions: validSourceFileTypes]];

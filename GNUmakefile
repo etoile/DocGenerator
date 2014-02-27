@@ -26,7 +26,7 @@ endif
 $(TOOL_NAME)_OBJCFLAGS += -fobjc-arc -Wparentheses `pkg-config libgvc --cflags`
 # For Graphviz version >= 2.30, we expect pkg-config to return -lcgraph (never -lgraph)
 # For example, Fedora could require a workaround, see https://bugzilla.redhat.com/show_bug.cgi?id=904790
-$(TOOL_NAME)_TOOL_LIBS = -lEtoileFoundation -lSourceCodeKit `pkg-config libgvc --libs` 
+$(TOOL_NAME)_TOOL_LIBS = -lEtoileFoundation -lSourceCodeKit -lclang `pkg-config libgvc --libs` 
  
 # For SourceCodeKit dependencies
 $(TOOL_NAME)_CPPFLAGS += -I`llvm-config --src-root`/tools/clang/include/ -I`llvm-config --includedir`

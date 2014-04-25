@@ -190,7 +190,11 @@ withDictionaryName: (NSString *)mergedDictName
 	if (element != nil)
 		return element;
 
-	element = [self elementForSymbolName: anOwnerSymbol
+	/* Trim parentheses around the protocol name in the symbol ref */
+	NSString *protocolName = [anOwnerSymbol substringFromIndex: 1 
+	                                                   toIndex: [anOwnerSymbol length] - 1];
+
+	element = [self elementForSymbolName: protocolName
 	                              ofKind: @"protocols"];
 
 	if (element != nil)

@@ -34,7 +34,7 @@ The doc element tree is rooted in a page. See DocPage. */
 	NSString *filteredDescription;
 	NSString *task;
 	NSString *taskUnit;
-	NSString *ownerSymbolName;
+	NSString *ownerSymbolRef;
 }
 
 /** @taskunit Basic Documentation Properties */
@@ -112,9 +112,9 @@ Can be overriden in a subclass to update additional markup values. */
 /** The class, category or protocol symbol that is valid to resolve local 
 symbols in the element documentation.
 
-As an example, -ownerSymbolName is a local symbol that is resolved and replaced 
+As an example, -ownerSymbolRef is a local symbol that is resolved and replaced 
 by a link in -insertLinksWithDocIndex:forString:. */
-@property (nonatomic, strong) NSString *ownerSymbolName;
+@property (nonatomic, strong) NSString *ownerSymbolRef;
 /** Parses valid ETDoc symbol names in the given description and replaces them 
 with links built by the given doc index.
 

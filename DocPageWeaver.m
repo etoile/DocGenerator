@@ -432,7 +432,7 @@ presently. */
 
 	[apiOverviewPage addSubheader: currentHeader];
 
-	[[self currentHeader] setOwnerSymbolName: aClassName];
+	[[self currentHeader] setOwnerSymbolRef: aClassName];
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: aClassName 
 	                 ofKind: @"classes"];
@@ -454,7 +454,7 @@ presently. */
 
 	[apiOverviewPage addSubheader: currentHeader];
 
-	[[self currentHeader] setOwnerSymbolName: [NSString stringWithFormat: @"(%@)", aProtocolName]];
+	[[self currentHeader] setOwnerSymbolRef: [NSString stringWithFormat: @"(%@)", aProtocolName]];
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: aProtocolName 
 	                 ofKind: @"protocols"];
@@ -493,7 +493,7 @@ presently. */
 		kind = @"protocols";
 	}
 
-	[[self currentHeader] setOwnerSymbolName: categorySymbol];
+	[[self currentHeader] setOwnerSymbolRef: categorySymbol];
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: categorySymbol
 	                 ofKind: kind];
@@ -528,7 +528,7 @@ presently. */
 		refMarkup = [aMethod refMarkupWithProtocolName: [self currentProtocolName]];
 		ownerSymbol = [NSString stringWithFormat: @"(%@)", [self currentProtocolName]];
 	}
-	[aMethod setOwnerSymbolName: ownerSymbol];
+	[aMethod setOwnerSymbolRef: ownerSymbol];
 	[docIndex setProjectRef: [[self currentPage] name] 
 	          forSymbolName: refMarkup
 	                 ofKind: @"methods"];

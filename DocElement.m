@@ -15,7 +15,7 @@
 
 @implementation DocElement
 
-@synthesize name, task, taskUnit, filteredDescription, ownerSymbolName;
+@synthesize name, task, taskUnit, filteredDescription, ownerSymbolRef;
 
 - (id) init
 {

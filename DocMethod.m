@@ -73,10 +73,10 @@
 
 - (DocHTMLElement *) HTMLAnchorRepresentation
 {
-	/* -ownerSymbolName can return either a class or protocol e.g. ClassName or 
+	/* -ownerSymbolRef can return either a class or protocol e.g. ClassName or 
 	   (ProtocolName), so -refMarkupWithClassName: with the latter would return 
 	   a protocol ref markup. */
-	NSString *linkId = [self refMarkupWithClassName: [self ownerSymbolName]];
+	NSString *linkId = [self refMarkupWithClassName: [self ownerSymbolRef]];
 	return [A name: [linkId stringByReplacingOccurrencesOfString: @" " withString: @"_"]];
 }
 

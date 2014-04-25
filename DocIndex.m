@@ -182,7 +182,7 @@ withDictionaryName: (NSString *)mergedDictName
 	return nil;
 }
 
-- (id) elementForOwnerSymbolName: (NSString *)anOwnerSymbol
+- (id) elementForOwnerSymbolRef: (NSString *)anOwnerSymbol
 {
 	DocElement *element = [self elementForSymbolName: anOwnerSymbol
 	                                          ofKind: @"classes"];
@@ -213,7 +213,7 @@ withDictionaryName: (NSString *)mergedDictName
 		                                          ofKind: @"protocols"];
 
 		NSString *symbol = [NSString stringWithFormat: @"%@[%@ %@]",
-			[aRef substringToIndex: 1], [protocol ownerSymbolName], [aRef substringFromIndex: 1]];
+			[aRef substringToIndex: 1], [protocol ownerSymbolRef], [aRef substringFromIndex: 1]];
 		NSString *link = [self linkWithName: aRef
 		                      forSymbolName: symbol
 		                             ofKind: @"methods"];
@@ -243,7 +243,7 @@ withDictionaryName: (NSString *)mergedDictName
 		                                       ofKind: @"classes"];
 
 		NSString *symbol = [NSString stringWithFormat: @"%@[%@ %@]",
-			[aRef substringToIndex: 1], [class ownerSymbolName], [aRef substringFromIndex: 1]];
+			[aRef substringToIndex: 1], [class ownerSymbolRef], [aRef substringFromIndex: 1]];
 		NSString *link = [self linkWithName: aRef
 		                      forSymbolName: symbol
 		                             ofKind: @"methods"];
@@ -257,20 +257,20 @@ withDictionaryName: (NSString *)mergedDictName
 	return aRef;
 }
 
-// NOTE: Could be better to pass -ownerSymbolName result to relativeTo:, but 
+// NOTE: Could be better to pass -ownerSymbolRef result to relativeTo:, but
 // we would lost the context to report a warning.
 - (NSString *) linkForLocalMethodRef: (NSString *)aRef relativeTo: (DocElement *)anElement
 {
-	if ([anElement ownerSymbolName] == nil)
+	if ([anElement ownerSymbolRef] == nil)
 	{
-		ETLog(@"WARNING: %@ cannot be resolved in %@ (ownerSymbolName is nil)", aRef, anElement);
+		ETLog(@"WARNING: %@ cannot be resolved in %@ (ownerSymbolRef is nil)", aRef, anElement);
 		return aRef;
 	}
 
-	/* For a protocol, ownerSymbolName == '(ProtocolName)'. 
-	   For a category, ownerSymbolName == 'ClassName(CategoryName)'. */
+	/* For a protocol, ownerSymbolRef == '(ProtocolName)'. 
+	   For a category, ownerSymbolRef == 'ClassName(CategoryName)'. */
 	NSString *symbol = [NSString stringWithFormat: @"%@[%@ %@]", 
-		[aRef substringToIndex: 1], [anElement ownerSymbolName], [aRef substringFromIndex: 1]];
+		[aRef substringToIndex: 1], [anElement ownerSymbolRef], [aRef substringFromIndex: 1]];
 	NSString *link = [self linkWithName: aRef
 	                      forSymbolName: symbol
 	                             ofKind: @"methods"];
@@ -279,7 +279,7 @@ withDictionaryName: (NSString *)mergedDictName
 		return link;
 
 	DocHeader *methodOwner =
-		[self elementForOwnerSymbolName: [anElement ownerSymbolName]];
+		[self elementForOwnerSymbolRef: [anElement ownerSymbolRef]];
 
 	link = [self linkForLocalAdoptedProtocolMethodRef: aRef
 	                                    inMethodOwner: methodOwner];

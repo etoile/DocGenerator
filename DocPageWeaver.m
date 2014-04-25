@@ -124,7 +124,7 @@ presently. */
 {
 	NSMutableArray *commonFiles = [NSMutableArray arrayWithArray: sourceFiles];
 	
-	[[commonFiles filter] hasSuffix: [A(@"README", @"INSTALL", @"NEWS") each]];
+	[[commonFiles filter] hasPrefix: [A(@"README", @"INSTALL", @"NEWS") each]];
 
 	NSArray *validSourceFileTypes =
 		[[[self class] additionalSourceFileTypes] arrayByAddingObject: @"gsdoc"];

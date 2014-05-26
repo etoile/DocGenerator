@@ -22,9 +22,9 @@ Directory with(path) files foreach(sourceFile,
 	# /** Documentation and/or more */
 	# @property
 	#
-	# Use regex101.com to test (\/\*\*(?:(?!\*\/).)+?\*\/\n)?@property \(.+?\) (\w+(?: \*+)?) ?(\w+);
+	# Use regex101.com to test (\/\*\*(?:(?!\*\/).)+?\*\/\n)?@property \(.+?\) (\w+(?: \*+)?(?: \<\w+\>)?) ?(\w+)
 	#
-	regex := Regex with("(\\/\\*\\*(?:(?!\\*/).)+?\\*\\/\\n)?@property \\(.+?\\) (\\w+(?: \\*+)?) ?(\\w+);") dotAll
+	regex := Regex with("(\\/\\*\\*(?:(?!\\*/).)+?\\*\\/\\n)?@property \\(.+?\\) (\\w+(?: \\*+)?(?: \\<\\w+\\>)?) ?(\\w+);") dotAll
 	matches := regex matchesIn(sourceFile contents)
 
 	## Print regex captures
